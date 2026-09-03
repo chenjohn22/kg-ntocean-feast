@@ -1,0 +1,14 @@
+.git
+.gitignore
+node_modules
+dist
+*.log
+.DS_Store
+
+# Design source files are not required in the runtime image.
+*.ai
+*.pdf
+架構.jpg
+首頁.jpg
+4A485CC78D99350EF36DC2CD40D5CBC8F9C5497F.jpg
+scripts
