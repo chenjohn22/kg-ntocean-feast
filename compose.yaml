@@ -1,4 +1,75 @@
 services:
+  db:
+    image: mysql:8.4
+    container_name: ntocean-feast-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-rootpassword}
+      MYSQL_DATABASE: ${DB_NAME:-ntocean_feast}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -p$${MYSQL_ROOT_PASSWORD} --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  migrate:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    command: ["/usr/local/bin/migrate", "-seed", "/app/random_codes_60000.json"]
+    environment: &api-environment
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: ${DB_USER:-root}
+      DB_PASSWORD: ${DB_PASSWORD:-rootpassword}
+      DB_NAME: ${DB_NAME:-ntocean_feast}
+      ADMIN_USER: ${ADMIN_USER:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
+      ADMIN_COOKIE_SECURE: ${ADMIN_COOKIE_SECURE:-false}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: ntocean-feast-api
+    environment: *api-environment
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+  backup:
+    image: mysql:8.4
+    container_name: ntocean-feast-backup
+    profiles: ["backup"]
+    entrypoint: ["/bin/sh", "/opt/backup/backup-entrypoint.sh"]
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: ${DB_USER:-root}
+      DB_PASSWORD: ${DB_PASSWORD:-rootpassword}
+      DB_NAME: ${DB_NAME:-ntocean_feast}
+      BACKUP_HOUR: ${BACKUP_HOUR:-3}
+      BACKUP_RETENTION_HOURS: ${BACKUP_RETENTION_HOURS:-72}
+      TZ: Asia/Taipei
+    volumes:
+      - ./backend/backup:/opt/backup:ro
+      - ./backups:/backups
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
   web:
     build:
       context: .
@@ -6,4 +77,9 @@ services:
     container_name: ntocean-feast-web
     ports:
       - "8080:80"
+    depends_on:
+      - api
     restart: unless-stopped
+
+volumes:
+  mysql-data:
