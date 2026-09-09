@@ -132,4 +132,16 @@ make build
 Migration 檔案位於 `backend/migrations`。回滾最新一版可執行
 `make migrate-down`；此動作會刪除登記與序號資料，僅應在確認不需保留資料時使用。
 
+## Demo Server 部署
+
+Server 使用 `compose.server.yaml` 加上 Caddy 提供 HTTPS。Server 的 `.env` 請將
+`WEB_BIND_ADDRESS` 設為 `127.0.0.1`，避免略過 HTTPS 直接連入 Web 容器：
+
+```bash
+docker compose -f compose.yaml -f compose.server.yaml --profile backup up --build -d
+```
+
+測試網址為 <https://demo.ntocean-feast.com.tw>。DNS 的 A 記錄必須先指向 Server，
+Caddy 才能自動取得 TLS 憑證。
+
 首頁會依畫面方向切換桌機版（1920×1080）與手機版（1080×1920）視覺。五個首頁入口已分別預留 `/event`、`/map`、`/protect`、`/gift`、`/food` 路由。
