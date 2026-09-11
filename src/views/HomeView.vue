@@ -41,7 +41,7 @@ onMounted(() => {
   document.body.classList.add('intro-video-open')
   closeTimer = window.setTimeout(() => {
     canCloseIntro.value = true
-  }, 5000)
+  }, 10000)
 })
 
 onBeforeUnmount(() => {
