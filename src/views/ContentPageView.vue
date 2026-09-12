@@ -5,6 +5,7 @@ const props = defineProps({
   title: { type: String, required: true },
   slides: { type: Array, required: true },
   cta: { type: Object, default: null },
+  scrolling: { type: Boolean, default: false },
 })
 
 const sectionLinks = [
@@ -33,7 +34,7 @@ function next() {
 }
 
 function handleKeydown(event) {
-  if (props.slides.length < 2) return
+  if (props.scrolling || props.slides.length < 2) return
   if (event.key === 'ArrowLeft') previous()
   if (event.key === 'ArrowRight') next()
 }
@@ -45,10 +46,17 @@ function closeMenu() {
 
 <template>
   <main class="content-page" :aria-label="title" tabindex="-1" @keydown="handleKeydown">
-    <section class="content-desktop">
+    <section :class="['content-desktop', { 'content-desktop--scroll': scrolling }]">
       <h1 class="sr-only">{{ title }}</h1>
 
-      <Transition name="content-slide" mode="out-in">
+      <div v-if="scrolling" class="content-scroll">
+        <figure v-for="(slide, index) in slides" :key="slide.src" class="content-scroll__page">
+          <img class="content-artwork" :src="slide.src" :alt="slide.alt" />
+          <figcaption class="sr-only">{{ title }}第 {{ index + 1 }} 頁</figcaption>
+        </figure>
+      </div>
+
+      <Transition v-else name="content-slide" mode="out-in">
         <img
           :key="activeSlide.src"
           class="content-artwork"
@@ -70,7 +78,7 @@ function closeMenu() {
         <img :src="cta.image" :alt="cta.label" />
       </RouterLink>
 
-      <template v-if="slides.length > 1">
+      <template v-if="!scrolling && slides.length > 1">
         <button class="content-arrow content-arrow--previous" type="button" aria-label="上一頁" @click="previous">‹</button>
         <button class="content-arrow content-arrow--next" type="button" aria-label="下一頁" @click="next">›</button>
 

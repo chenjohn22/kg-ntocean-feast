@@ -257,6 +257,29 @@ a {
   user-select: none;
 }
 
+.content-scroll {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  scrollbar-color: rgba(244, 240, 128, .9) rgba(12, 48, 87, .65);
+}
+
+.content-scroll__page {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+.content-scroll__page .content-artwork {
+  object-fit: cover;
+}
+
 .content-menu {
   position: absolute;
   z-index: 10;

@@ -7,13 +7,14 @@ import RegistrationView from './views/RegistrationView.vue'
 import AdminView from './views/AdminView.vue'
 import './style.css'
 
-const page = (title, slides, cta = null) => ({
+const page = (title, slides, cta = null, scrolling = false) => ({
   title,
   slides: slides.map((src, index) => ({
     src,
     alt: `${title}${slides.length > 1 ? `第 ${index + 1} 頁` : ''}`,
   })),
   cta,
+  scrolling,
 })
 
 const router = createRouter({
@@ -30,7 +31,7 @@ const router = createRouter({
       path: '/map',
       name: 'map',
       component: ContentPageView,
-      props: page('海派地圖', ['/assets/pages/map.jpg', '/assets/pages/map-harbor.jpg']),
+      props: page('海派地圖', ['/assets/pages/map-harbor.jpg', '/assets/pages/map.jpg'], null, true),
     },
     {
       path: '/protect',
@@ -52,7 +53,7 @@ const router = createRouter({
       path: '/food',
       name: 'food',
       component: ContentPageView,
-      props: page('海派美食', Array.from({ length: 6 }, (_, index) => `/assets/pages/food-${index + 1}.jpg`)),
+      props: page('海派美食', Array.from({ length: 6 }, (_, index) => `/assets/pages/food-${index + 1}.jpg`), null, true),
     },
     { path: '/gift/register', name: 'gift-register', component: RegistrationView },
     { path: '/kg-manager-admin', name: 'admin', component: AdminView },
