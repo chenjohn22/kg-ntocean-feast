@@ -2,31 +2,58 @@ import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
 import HomeView from './views/HomeView.vue'
-import PlaceholderView from './views/PlaceholderView.vue'
-import GiftView from './views/GiftView.vue'
+import ContentPageView from './views/ContentPageView.vue'
 import RegistrationView from './views/RegistrationView.vue'
 import AdminView from './views/AdminView.vue'
 import './style.css'
 
-const sections = {
-  event: '活動專區',
-  map: '海派地圖',
-  protect: '海派護照',
-  gift: '海派好禮',
-  food: '海派美食',
-}
+const page = (title, slides, cta = null) => ({
+  title,
+  slides: slides.map((src, index) => ({
+    src,
+    alt: `${title}${slides.length > 1 ? `第 ${index + 1} 頁` : ''}`,
+  })),
+  cta,
+})
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', name: 'home', component: HomeView },
-    ...Object.entries(sections).filter(([path]) => path !== 'gift').map(([path, title]) => ({
-      path: `/${path}`,
-      name: path,
-      component: PlaceholderView,
-      props: { title },
-    })),
-    { path: '/gift', name: 'gift', component: GiftView },
+    {
+      path: '/event',
+      name: 'event',
+      component: ContentPageView,
+      props: page('活動專區', ['/assets/pages/event.jpg']),
+    },
+    {
+      path: '/map',
+      name: 'map',
+      component: ContentPageView,
+      props: page('海派地圖', ['/assets/pages/map.jpg', '/assets/pages/map-harbor.jpg']),
+    },
+    {
+      path: '/protect',
+      name: 'protect',
+      component: ContentPageView,
+      props: page('海派護照', ['/assets/pages/protect-restaurants.jpg']),
+    },
+    {
+      path: '/gift',
+      name: 'gift',
+      component: ContentPageView,
+      props: page('海派好禮', ['/assets/pages/gift.jpg'], {
+        to: '/gift/register',
+        label: '我要登錄',
+        image: '/assets/pages/gift-register.png',
+      }),
+    },
+    {
+      path: '/food',
+      name: 'food',
+      component: ContentPageView,
+      props: page('海派美食', Array.from({ length: 6 }, (_, index) => `/assets/pages/food-${index + 1}.jpg`)),
+    },
     { path: '/gift/register', name: 'gift-register', component: RegistrationView },
     { path: '/kg-manager-admin', name: 'admin', component: AdminView },
     { path: '/:pathMatch(.*)*', redirect: '/' },
