@@ -17,6 +17,7 @@ const sectionLinks = [
 ]
 
 const current = ref(0)
+const menu = ref(null)
 const activeSlide = computed(() => props.slides[current.value])
 
 watch(() => props.title, () => {
@@ -36,6 +37,10 @@ function handleKeydown(event) {
   if (event.key === 'ArrowLeft') previous()
   if (event.key === 'ArrowRight') next()
 }
+
+function closeMenu() {
+  menu.value?.removeAttribute('open')
+}
 </script>
 
 <template>
@@ -52,10 +57,10 @@ function handleKeydown(event) {
         />
       </Transition>
 
-      <details class="content-menu">
+      <details ref="menu" class="content-menu">
         <summary><span aria-hidden="true">☰</span> 網站選單</summary>
         <nav aria-label="內頁導覽">
-          <RouterLink v-for="link in sectionLinks" :key="link.to" :to="link.to">
+          <RouterLink v-for="link in sectionLinks" :key="link.to" :to="link.to" @click="closeMenu">
             {{ link.label }}
           </RouterLink>
         </nav>
