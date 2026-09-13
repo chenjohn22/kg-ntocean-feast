@@ -4,6 +4,7 @@ import { computed, ref, watch } from 'vue'
 const props = defineProps({
   title: { type: String, required: true },
   slides: { type: Array, required: true },
+  mobileSlides: { type: Array, required: true },
   cta: { type: Object, default: null },
   scrolling: { type: Boolean, default: false },
 })
@@ -19,6 +20,7 @@ const sectionLinks = [
 
 const current = ref(0)
 const menu = ref(null)
+const mobileMenu = ref(null)
 const activeSlide = computed(() => props.slides[current.value])
 
 watch(() => props.title, () => {
@@ -41,6 +43,7 @@ function handleKeydown(event) {
 
 function closeMenu() {
   menu.value?.removeAttribute('open')
+  mobileMenu.value?.removeAttribute('open')
 }
 </script>
 
@@ -98,15 +101,35 @@ function closeMenu() {
       </template>
     </section>
 
-    <section class="content-mobile-pending">
-      <p class="content-mobile-kicker">2026 新北海派</p>
-      <h1>{{ title }}</h1>
-      <p>手機版視覺素材準備中，請先使用電腦版瀏覽完整內容。</p>
-      <nav class="content-mobile-links" aria-label="內頁導覽">
-        <RouterLink v-for="link in sectionLinks" :key="link.to" :to="link.to">
-          {{ link.label }}
-        </RouterLink>
-      </nav>
+    <section :class="['content-mobile', { 'content-mobile--scroll': mobileSlides.length > 1 }]">
+      <h1 class="sr-only">{{ title }}</h1>
+
+      <div v-if="mobileSlides.length > 1" class="content-mobile-scroll">
+        <figure v-for="(slide, index) in mobileSlides" :key="slide.src" class="content-mobile-scroll__page">
+          <img class="content-mobile-artwork" :src="slide.src" :alt="slide.alt" />
+          <figcaption class="sr-only">{{ title }}手機版第 {{ index + 1 }} 頁</figcaption>
+        </figure>
+      </div>
+
+      <img
+        v-else
+        class="content-mobile-artwork"
+        :src="mobileSlides[0].src"
+        :alt="mobileSlides[0].alt"
+      />
+
+      <details ref="mobileMenu" class="content-menu content-menu--mobile">
+        <summary><span aria-hidden="true">☰</span> 網站選單</summary>
+        <nav aria-label="手機版內頁導覽">
+          <RouterLink v-for="link in sectionLinks" :key="link.to" :to="link.to" @click="closeMenu">
+            {{ link.label }}
+          </RouterLink>
+        </nav>
+      </details>
+
+      <RouterLink v-if="cta" class="content-cta content-cta--mobile" :to="cta.to" :aria-label="cta.label">
+        <img :src="cta.mobileImage || cta.image" :alt="cta.label" />
+      </RouterLink>
     </section>
   </main>
 </template>
