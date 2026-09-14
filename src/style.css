@@ -272,7 +272,6 @@ a {
   -webkit-tap-highlight-color: rgba(255, 244, 103, .35);
 }
 
-.content-map-hotspot:hover,
 .content-map-hotspot:focus-visible {
   outline: 3px solid #fff56e;
   outline-offset: 1px;

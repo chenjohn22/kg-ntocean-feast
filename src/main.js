@@ -47,7 +47,7 @@ const router = createRouter({
       path: '/protect',
       name: 'protect',
       component: ContentPageView,
-      props: page('海派護照', passportDesktopSlides, null, false, passportMobileSlides),
+      props: page('海派護照', passportDesktopSlides, null, true, passportMobileSlides),
     },
     {
       path: '/gift',
