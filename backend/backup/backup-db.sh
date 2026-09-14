@@ -40,7 +40,7 @@ mysqldump \
   --triggers \
   --no-tablespaces \
   --set-gtid-purged=OFF \
-  "$DB_NAME" lottery_codes registrations | gzip -c > "$temporary_file"
+  "$DB_NAME" lottery_codes activity_restaurants registrations | gzip -c > "$temporary_file"
 
 test -s "$temporary_file"
 mv "$temporary_file" "$final_file"

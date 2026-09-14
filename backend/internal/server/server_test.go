@@ -7,16 +7,25 @@ import (
 )
 
 func TestValidateRegistration(t *testing.T) {
+	restaurantID := uint64(1)
 	tests := []struct {
-		name, phone, email, code string
-		wantError                bool
+		name, phone, email, code, source, suggestion string
+		restaurantID                                 *uint64
+		satisfaction                                 int
+		wantError                                    bool
 	}{
-		{"王小明", "0912345678", "user@example.com", "ABCDE00001", false},
-		{"", "0912345678", "user@example.com", "ABCDE00001", true},
-		{"王小明", "0912345678", "not-an-email", "ABCDE00001", true},
+		{"王小明", "0912345678", "user@example.com", "ABCDE00001", "fuji_banquet", "很棒", nil, 5, false},
+		{"王小明", "0912345678", "user@example.com", "ABCDE00001", "partner_restaurant", "很棒", &restaurantID, 4, false},
+		{"", "0912345678", "user@example.com", "ABCDE00001", "fuji_banquet", "很棒", nil, 5, true},
+		{"王小明", "0912345678", "not-an-email", "ABCDE00001", "fuji_banquet", "很棒", nil, 5, true},
+		{"王小明", "0912345678", "user@example.com", "ABCDE00001", "partner_restaurant", "很棒", nil, 5, true},
+		{"王小明", "0912345678", "user@example.com", "ABCDE00001", "guihou_fair", "", nil, 6, true},
 	}
 	for _, test := range tests {
-		got := validateRegistration(test.name, test.phone, test.email, test.code)
+		got := validateRegistration(
+			test.name, test.phone, test.email, test.code, test.source,
+			test.restaurantID, test.satisfaction, test.suggestion,
+		)
 		if (got != "") != test.wantError {
 			t.Fatalf("validateRegistration() = %q, wantError %v", got, test.wantError)
 		}

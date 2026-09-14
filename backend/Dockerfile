@@ -14,6 +14,7 @@ WORKDIR /app/backend
 COPY --from=build /out/server /usr/local/bin/server
 COPY --from=build /out/migrate /usr/local/bin/migrate
 COPY backend/migrations ./migrations
+COPY backend/data /app/backend/data
 COPY random_codes_60000.json /app/random_codes_60000.json
 EXPOSE 8081
 CMD ["/usr/local/bin/server"]

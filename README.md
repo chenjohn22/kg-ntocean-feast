@@ -5,11 +5,11 @@ Vue 3 活動網站，加上 Go / MySQL 的海派好禮登記系統與管理後�
 ## 功能
 
 - `/gift`：海派好禮入口
-- `/gift/register`：顧客填寫姓名、聯絡電話、信箱及登錄編號
+- `/gift/register`：顧客填寫基本資料、抽獎券來源、合作餐廳、滿意度及活動建議
 - `/kg-manager-admin`：序號管理後台（預設帳密 `admin` / `admin`）
 - 60,000 筆序號匯入、資料庫唯一限制防止重複登記
 - 後台支援姓名、電話、信箱、登錄編號、日期與狀態篩選
-- 分頁、統計與依目前搜尋條件匯出 UTF-8 CSV
+- 分頁、滿意度圖表、建議內容視窗與依目前搜尋條件匯出 UTF-8 CSV
 - 每日自動備份序號與登記資料，僅保留最近 72 小時
 
 ## 一鍵啟動（Docker Compose）
@@ -19,7 +19,8 @@ docker compose up --build -d
 ```
 
 啟動過程會建立 MySQL database、執行 migration，並將
-`random_codes_60000.json` 的 60,000 筆序號以可重複執行的方式匯入。
+`random_codes_60000.json` 的 60,000 筆序號及 `backend/data/activity_restaurants.json`
+的活動餐廳，以可重複執行的方式匯入資料庫。
 
 完成後開啟：
 
@@ -45,8 +46,8 @@ docker compose down
 docker compose --profile backup up -d
 ```
 
-啟用後會在台北時間每天凌晨 03:00 備份 `lottery_codes` 與
-`registrations`，檔案存放在專案的 `backups/` 目錄。每次成功備份後會刪除
+啟用後會在台北時間每天凌晨 03:00 備份 `lottery_codes`、
+`activity_restaurants` 與 `registrations`，檔案存放在專案的 `backups/` 目錄。每次成功備份後會刪除
 超過 72 小時的 `.sql.gz`；若備份失敗，不會清除任何舊備份。
 
 若服務在當日 03:00 後才啟動，且當天尚無備份，會立即補做一次。可在
@@ -130,7 +131,7 @@ make build
 - `BACKUP_RETENTION_HOURS`（保存時數，預設 `72`）
 
 Migration 檔案位於 `backend/migrations`。回滾最新一版可執行
-`make migrate-down`；此動作會刪除登記與序號資料，僅應在確認不需保留資料時使用。
+`make migrate-down`；回滾會移除最新 migration 建立的欄位或資料表，執行前應先備份。
 
 ## Demo Server 部署
 

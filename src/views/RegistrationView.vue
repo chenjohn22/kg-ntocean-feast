@@ -1,10 +1,43 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref, watch } from 'vue'
 
-const form = reactive({ name: '', phone: '', email: '', code: '' })
+const form = reactive({
+  name: '', phone: '', email: '', code: '', ticketSource: '', restaurantId: '', satisfaction: null, suggestion: '',
+})
 const loading = ref(false)
 const error = ref('')
 const success = ref(null)
+const restaurants = ref([])
+const restaurantsLoading = ref(false)
+const restaurantsError = ref('')
+
+const restaurantGroups = computed(() => {
+  const groups = new Map()
+  restaurants.value.forEach((restaurant) => {
+    if (!groups.has(restaurant.category)) groups.set(restaurant.category, [])
+    groups.get(restaurant.category).push(restaurant)
+  })
+  return [...groups.entries()].map(([category, items]) => ({ category, items }))
+})
+
+watch(() => form.ticketSource, (source) => {
+  if (source !== 'partner_restaurant') form.restaurantId = ''
+})
+
+async function loadRestaurants() {
+  restaurantsLoading.value = true
+  restaurantsError.value = ''
+  try {
+    const response = await fetch('/api/restaurants')
+    const data = await response.json()
+    if (!response.ok) throw new Error(data.error || '無法載入活動餐廳')
+    restaurants.value = data.items
+  } catch (requestError) {
+    restaurantsError.value = requestError.message
+  } finally {
+    restaurantsLoading.value = false
+  }
+}
 
 async function submit() {
   error.value = ''
@@ -13,7 +46,16 @@ async function submit() {
     const response = await fetch('/api/registrations', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(form),
+      body: JSON.stringify({
+        name: form.name,
+        phone: form.phone,
+        email: form.email,
+        code: form.code,
+        ticket_source: form.ticketSource,
+        restaurant_id: form.ticketSource === 'partner_restaurant' ? Number(form.restaurantId) : null,
+        satisfaction: form.satisfaction,
+        suggestion: form.suggestion,
+      }),
     })
     const data = await response.json()
     if (!response.ok) throw new Error(data.error || '登記失敗，請稍後再試')
@@ -24,6 +66,8 @@ async function submit() {
     loading.value = false
   }
 }
+
+onMounted(loadRestaurants)
 </script>
 
 <template>
@@ -58,6 +102,44 @@ async function submit() {
           <label>
             <span>登錄編號</span>
             <input v-model.trim="form.code" class="code-input" name="code" maxlength="32" required placeholder="請輸入登錄編號" autocapitalize="characters" />
+          </label>
+
+          <fieldset class="survey-fieldset">
+            <legend>1. 獲得抽獎券的來源</legend>
+            <div class="radio-options radio-options--source">
+              <label class="radio-card"><input v-model="form.ticketSource" type="radio" name="ticket-source" value="fuji_banquet" required /><span>富基海派宴</span></label>
+              <label class="radio-card"><input v-model="form.ticketSource" type="radio" name="ticket-source" value="guihou_fair" /><span>龜吼園遊會</span></label>
+              <label class="radio-card"><input v-model="form.ticketSource" type="radio" name="ticket-source" value="partner_restaurant" /><span>活動合作餐廳</span></label>
+            </div>
+          </fieldset>
+
+          <label v-if="form.ticketSource === 'partner_restaurant'" class="conditional-field">
+            <span>1-2. 活動合作餐廳</span>
+            <select v-model="form.restaurantId" name="restaurant" required :disabled="restaurantsLoading || !!restaurantsError">
+              <option value="" disabled>{{ restaurantsLoading ? '餐廳載入中…' : '請選擇餐廳' }}</option>
+              <optgroup v-for="group in restaurantGroups" :key="group.category" :label="group.category">
+                <option v-for="restaurant in group.items" :key="restaurant.id" :value="restaurant.id">
+                  {{ restaurant.name }}{{ restaurant.location ? `（${restaurant.location}）` : '' }}
+                </option>
+              </optgroup>
+            </select>
+            <small v-if="restaurantsError" class="field-error">{{ restaurantsError }}，請重新整理頁面再試。</small>
+          </label>
+
+          <fieldset class="survey-fieldset">
+            <legend>2. 對於活動整體滿意度</legend>
+            <div class="radio-options radio-options--rating">
+              <label v-for="(label, rating) in ['非常不滿意', '不滿意', '普通', '滿意', '非常滿意']" :key="rating" class="radio-card radio-card--rating">
+                <input v-model="form.satisfaction" type="radio" name="satisfaction" :value="rating + 1" :required="rating === 0" />
+                <span><strong>{{ rating + 1 }}</strong>{{ label }}</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <label>
+            <span>3. 對於新北海派活動留下您的寶貴建議</span>
+            <textarea v-model.trim="form.suggestion" name="suggestion" rows="5" maxlength="1000" required placeholder="請輸入您的建議（最多 1000 字）" />
+            <small class="character-count">{{ form.suggestion.length }} / 1000</small>
           </label>
           <p v-if="error" class="form-error" role="alert">{{ error }}</p>
           <button class="primary-action primary-action--button" type="submit" :disabled="loading">

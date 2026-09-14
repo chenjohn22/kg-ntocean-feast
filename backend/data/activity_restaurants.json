@@ -1,0 +1,734 @@
+[
+  {
+    "category": "新北北海岸",
+    "name": "魚村活海鮮",
+    "location": "新北市萬里區野柳里港東路74之6號",
+    "sort_order": 1
+  },
+  {
+    "category": "新北北海岸",
+    "name": "野柳美觀園飯店",
+    "location": "新北市萬里區野柳里港東路156號",
+    "sort_order": 2
+  },
+  {
+    "category": "新北北海岸",
+    "name": "建香四姊妹海產店",
+    "location": "新北巿萬里區野柳里港東路160號",
+    "sort_order": 3
+  },
+  {
+    "category": "新北北海岸",
+    "name": "柏榕活海鮮",
+    "location": "新北市萬里區野柳里港東151-2號",
+    "sort_order": 4
+  },
+  {
+    "category": "新北北海岸",
+    "name": "錦園 漁夫料理",
+    "location": "新北市萬里區野柳里港東路159號",
+    "sort_order": 5
+  },
+  {
+    "category": "新北北海岸",
+    "name": "珠海活海鮮餐廳",
+    "location": "新北市萬里區野柳里港東路162-13號",
+    "sort_order": 6
+  },
+  {
+    "category": "新北北海岸",
+    "name": "女皇餐廳",
+    "location": "新北市萬里區野柳里港東路163號",
+    "sort_order": 7
+  },
+  {
+    "category": "新北北海岸",
+    "name": "三葉活海鮮",
+    "location": "新北市萬里區野柳里港東路74號之16",
+    "sort_order": 8
+  },
+  {
+    "category": "新北北海岸",
+    "name": "望海亭 三嫂的店",
+    "location": "新北市野柳里港東路162-15號",
+    "sort_order": 9
+  },
+  {
+    "category": "新北北海岸",
+    "name": "金湧泉SPA溫泉會館",
+    "location": "新北巿萬里區萬里加投213之3號",
+    "sort_order": 10
+  },
+  {
+    "category": "新北北海岸",
+    "name": "沐舍溫泉渡假酒店",
+    "location": "新北巿萬里區加投166-1號",
+    "sort_order": 11
+  },
+  {
+    "category": "新北北海岸",
+    "name": "呷尚鱻餐廳／ 尚鱻漁舖",
+    "location": "基隆市基金三路67-1號",
+    "sort_order": 12
+  },
+  {
+    "category": "新北北海岸",
+    "name": "魚多多海鮮料理",
+    "location": "新北市萬里區美崙路32號",
+    "sort_order": 13
+  },
+  {
+    "category": "新北北海岸",
+    "name": "湄公河南洋美食",
+    "location": "新北市萬里區瑪鋉路244號",
+    "sort_order": 14
+  },
+  {
+    "category": "新北北海岸",
+    "name": "小漁村海鮮店",
+    "location": "新北巿萬里區龜吼里漁澳路63號",
+    "sort_order": 15
+  },
+  {
+    "category": "新北北海岸",
+    "name": "珍鼎豐海鮮景觀餐廳",
+    "location": "新北巿萬里區龜吼里漁澳路2號2樓",
+    "sort_order": 16
+  },
+  {
+    "category": "新北北海岸",
+    "name": "漁家鄉海鮮餐廳",
+    "location": "新北市萬里區龜吼里漁澳路83號1樓",
+    "sort_order": 17
+  },
+  {
+    "category": "新北北海岸",
+    "name": "金翡翠餐廳",
+    "location": "新北市萬里區龜吼里漁澳路16之3號",
+    "sort_order": 18
+  },
+  {
+    "category": "新北北海岸",
+    "name": "富港海鮮",
+    "location": "新北市萬里區龜吼里漁澳路64-9號",
+    "sort_order": 19
+  },
+  {
+    "category": "新北北海岸",
+    "name": "阿嬌海鮮館",
+    "location": "新北市萬里區龜吼里漁澳路80號",
+    "sort_order": 20
+  },
+  {
+    "category": "新北北海岸",
+    "name": "北海漁港",
+    "location": "新北市萬里區龜吼里漁澳路16號",
+    "sort_order": 21
+  },
+  {
+    "category": "新北北海岸",
+    "name": "巧晏漁坊",
+    "location": "新北市萬里區龜吼里漁澳路62號之1",
+    "sort_order": 22
+  },
+  {
+    "category": "新北北海岸",
+    "name": "漁莊本港海鮮",
+    "location": "新北市萬里區龜吼里漁澳路64號之2",
+    "sort_order": 23
+  },
+  {
+    "category": "新北北海岸",
+    "name": "麗鮮料理",
+    "location": "龜吼漁夫市集二樓 攤號7",
+    "sort_order": 24
+  },
+  {
+    "category": "新北北海岸",
+    "name": "珍海活海鮮",
+    "location": "新北市萬里區龜吼里漁澳路62-2號",
+    "sort_order": 25
+  },
+  {
+    "category": "新北北海岸",
+    "name": "小微海產餐廳",
+    "location": "新北市萬里區龜吼里漁澳路16之1號",
+    "sort_order": 26
+  },
+  {
+    "category": "新北北海岸",
+    "name": "一品鮮萬里蟹漁夫料理",
+    "location": "新北市萬里區龜吼里漁澳路65號",
+    "sort_order": 27
+  },
+  {
+    "category": "新北北海岸",
+    "name": "津鮮閣海鮮餐廳",
+    "location": "新北市萬里區龜吼里漁澳路16之2號",
+    "sort_order": 28
+  },
+  {
+    "category": "新北北海岸",
+    "name": "99蟹老闆",
+    "location": "新北市萬里區龜吼里石角路53號",
+    "sort_order": 29
+  },
+  {
+    "category": "新北北海岸",
+    "name": "明發料理坊",
+    "location": "新北市萬里區漁澳路79-2號",
+    "sort_order": 30
+  },
+  {
+    "category": "新北北海岸",
+    "name": "蟹港海鮮",
+    "location": "新北市萬里區漁澳路64之5號",
+    "sort_order": 31
+  },
+  {
+    "category": "新北北海岸",
+    "name": "魚美村活海鮮",
+    "location": "新北市萬里區野柳里東澳路65號",
+    "sort_order": 32
+  },
+  {
+    "category": "新北北海岸",
+    "name": "阿達活海產餐廳",
+    "location": "新北市石門區富基里楓林17-10號",
+    "sort_order": 33
+  },
+  {
+    "category": "新北北海岸",
+    "name": "姊妹海景餐廳",
+    "location": "新北巿石門區富基村楓林15-16號",
+    "sort_order": 34
+  },
+  {
+    "category": "新北北海岸",
+    "name": "春金活海產",
+    "location": "新北市石門區富基里楓林路17-8號",
+    "sort_order": 35
+  },
+  {
+    "category": "新北北海岸",
+    "name": "黑白毛海鮮",
+    "location": "新北市貢寮區仁和路51號",
+    "sort_order": 36
+  },
+  {
+    "category": "新北北海岸",
+    "name": "嘉邑海鮮小館",
+    "location": "新北市貢寮區仁和路2號",
+    "sort_order": 37
+  },
+  {
+    "category": "新北北海岸",
+    "name": "富士海鮮餐廳",
+    "location": "新北市貢寮區福隆里東興街8號",
+    "sort_order": 38
+  },
+  {
+    "category": "新北北海岸",
+    "name": "魚佳餚餐館",
+    "location": "新北市貢寮區福隆里東興街36號",
+    "sort_order": 39
+  },
+  {
+    "category": "新北北海岸",
+    "name": "龍蝦大王",
+    "location": "新北市貢寮區仁里里仁和路186號",
+    "sort_order": 40
+  },
+  {
+    "category": "新北北海岸",
+    "name": "深澳港平價海鮮樓",
+    "location": "新北市瑞芳區深澳路16-7號",
+    "sort_order": 41
+  },
+  {
+    "category": "新北北海岸",
+    "name": "海園活海鮮",
+    "location": "新北市瑞芳區鼻頭里鼻頭路245號",
+    "sort_order": 42
+  },
+  {
+    "category": "新北北海岸",
+    "name": "88號水碼頭",
+    "location": "新北市金山區豐漁里民生路88號",
+    "sort_order": 43
+  },
+  {
+    "category": "新北北海岸",
+    "name": "醉船長 日式海鮮餐廳",
+    "location": "新北市金山區環金路200號",
+    "sort_order": 44
+  },
+  {
+    "category": "新北北海岸",
+    "name": "田中芳園",
+    "location": "新北市金山區清水路53號",
+    "sort_order": 45
+  },
+  {
+    "category": "新北北海岸",
+    "name": "花義思廚坊",
+    "location": "新北市金山區環金路286號",
+    "sort_order": 46
+  },
+  {
+    "category": "新北北海岸",
+    "name": "英芳飯店",
+    "location": "新北市石門區石門里中央路9號之5",
+    "sort_order": 47
+  },
+  {
+    "category": "新北北海岸",
+    "name": "八八八海鮮美食館",
+    "location": "新北市三芝區中興街2段30號之一",
+    "sort_order": 48
+  },
+  {
+    "category": "新北北海岸",
+    "name": "鄉園本港海鮮餐廳",
+    "location": "新北市三芝區淡金路一段4號之1",
+    "sort_order": 49
+  },
+  {
+    "category": "新北北海岸",
+    "name": "魚藏海鮮宴會廣場",
+    "location": "新北市淡水區觀海路201號2樓",
+    "sort_order": 50
+  },
+  {
+    "category": "新北北海岸",
+    "name": "大胖活海產",
+    "location": "新北市淡水區漁人碼頭商店街",
+    "sort_order": 51
+  },
+  {
+    "category": "新北市區熱炒",
+    "name": "三和大盤熱炒三重店",
+    "location": "新北市三重區自強路三段80號",
+    "sort_order": 52
+  },
+  {
+    "category": "新北市區熱炒",
+    "name": "不仔的店",
+    "location": "新北市新店區三民路135號",
+    "sort_order": 53
+  },
+  {
+    "category": "新北市區熱炒",
+    "name": "開喜閣再來海鮮餐廳",
+    "location": "新北市新店區北新路一段88巷1號",
+    "sort_order": 54
+  },
+  {
+    "category": "新北市區熱炒",
+    "name": "喝桶海啤酒屋海鮮餐廰",
+    "location": "新北市板橋區民生路三段309號",
+    "sort_order": 55
+  },
+  {
+    "category": "新北市區熱炒",
+    "name": "海釣族真味園",
+    "location": "新北市板橋區文化路二段126號",
+    "sort_order": 56
+  },
+  {
+    "category": "新北市區熱炒",
+    "name": "珠雞城",
+    "location": "新北市樹林區保安街一段85號",
+    "sort_order": 57
+  },
+  {
+    "category": "新北市區熱炒",
+    "name": "新方海鮮宴會館",
+    "location": "新北市五股區成泰路一段194-2號",
+    "sort_order": 58
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "吾家海產",
+    "location": "一樓・1號攤",
+    "sort_order": 59
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "小豬水產",
+    "location": "一樓・2號攤",
+    "sort_order": 60
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "大發海鮮",
+    "location": "一樓・3號攤",
+    "sort_order": 61
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "上漁海鮮",
+    "location": "一樓・5號攤",
+    "sort_order": 62
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "阿英現撈活海鮮",
+    "location": "一樓・6號攤",
+    "sort_order": 63
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "尋",
+    "location": "一樓・7號攤",
+    "sort_order": 64
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "邱哥活海鮮",
+    "location": "一樓・8號攤",
+    "sort_order": 65
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "富誠水產",
+    "location": "一樓・9號攤",
+    "sort_order": 66
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "順吉萬里蟹 現釣活魚.活軟絲",
+    "location": "一樓・10號攤",
+    "sort_order": 67
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "小惠海產",
+    "location": "一樓・11號攤",
+    "sort_order": 68
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "興生魚片鮮魚坊",
+    "location": "一樓・12號攤",
+    "sort_order": 69
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "阿姑ㄟ祝福",
+    "location": "一樓・13號攤",
+    "sort_order": 70
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "寬哥萬里蟹活海鮮",
+    "location": "一樓・15號攤",
+    "sort_order": 71
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "均衡海鮮萬里蟹",
+    "location": "一樓・16號攤",
+    "sort_order": 72
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "船釣生魚片",
+    "location": "一樓・17號攤",
+    "sort_order": 73
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "尚益漁產行 阿雪新鮮漁貨",
+    "location": "一樓・18號攤",
+    "sort_order": 74
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "錢春海鮮",
+    "location": "一樓・19號攤",
+    "sort_order": 75
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "阿宏 萬里蟹 現釣活魚",
+    "location": "一樓・20號攤",
+    "sort_order": 76
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "小翔海產 萬里蟹 海膽軟絲",
+    "location": "一樓・21號攤",
+    "sort_order": 77
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "練家班烤魷魚",
+    "location": "一樓・22號攤",
+    "sort_order": 78
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "阿標海產萬里蟹",
+    "location": "一樓・23號攤",
+    "sort_order": 79
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "阿玉自產萬里蟹活海鮮",
+    "location": "一樓・25號攤",
+    "sort_order": 80
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "石花嬤海鮮乾貨",
+    "location": "一樓・26號攤",
+    "sort_order": 81
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "小微活海鮮萬里蟹",
+    "location": "一樓・27號攤",
+    "sort_order": 82
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "漁進萬里蟹專賣店",
+    "location": "一樓・28號攤",
+    "sort_order": 83
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "阿達仔活海鮮",
+    "location": "一樓・29號攤",
+    "sort_order": 84
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "海味小卷片魷魚絲",
+    "location": "一樓・30號攤",
+    "sort_order": 85
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "龍元水產行",
+    "location": "一樓・31號攤",
+    "sort_order": 86
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "協興168自產自銷萬里蟹",
+    "location": "一樓・32號攤",
+    "sort_order": 87
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "姐妹活海鮮",
+    "location": "一樓・33號攤",
+    "sort_order": 88
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "黑仔魚市",
+    "location": "一樓・35號攤",
+    "sort_order": 89
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "阿鈴活海鮮",
+    "location": "一樓・36號攤",
+    "sort_order": 90
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "海嗑立食（管理室旁）",
+    "location": "一樓・無編號",
+    "sort_order": 91
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "協昌本港海鮮料理",
+    "location": "二樓・1號攤",
+    "sort_order": 92
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "99蟹老闆",
+    "location": "二樓・2號攤",
+    "sort_order": 93
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "阿香海鮮.肉包子（原 找蟹大叔）",
+    "location": "二樓・3號攤",
+    "sort_order": 94
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "合作海鮮料理",
+    "location": "二樓・5號攤",
+    "sort_order": 95
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "烤魚達人活海鮮",
+    "location": "二樓・6號攤",
+    "sort_order": 96
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "麗鮮",
+    "location": "二樓・7號攤",
+    "sort_order": 97
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "三十川生魚片",
+    "location": "二樓・8號攤",
+    "sort_order": 98
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "揚洋海鮮",
+    "location": "二樓・9號攤",
+    "sort_order": 99
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "海韻海鮮熱炒",
+    "location": "二樓・10號攤",
+    "sort_order": 100
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "阿標海產萬里蟹",
+    "location": "二樓・11號攤",
+    "sort_order": 101
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "露露海鮮",
+    "location": "二樓・12號攤",
+    "sort_order": 102
+  },
+  {
+    "category": "龜吼漁夫市集",
+    "name": "蟹滿客",
+    "location": "二樓・13號攤",
+    "sort_order": 103
+  },
+  {
+    "category": "富基魚市",
+    "name": "春來活海鮮",
+    "location": "攤號 3、4、17、18、19",
+    "sort_order": 104
+  },
+  {
+    "category": "富基魚市",
+    "name": "立旬生魚片",
+    "location": "攤號 5、6、7",
+    "sort_order": 105
+  },
+  {
+    "category": "富基魚市",
+    "name": "基福活海鮮",
+    "location": "攤號 10、11、12",
+    "sort_order": 106
+  },
+  {
+    "category": "富基魚市",
+    "name": "張媽媽小舖",
+    "location": "攤號 13、14",
+    "sort_order": 107
+  },
+  {
+    "category": "富基魚市",
+    "name": "志銘活海鮮",
+    "location": "攤號 20、21、22",
+    "sort_order": 108
+  },
+  {
+    "category": "富基魚市",
+    "name": "正魚館",
+    "location": "攤號 25",
+    "sort_order": 109
+  },
+  {
+    "category": "富基魚市",
+    "name": "家軒生魚片",
+    "location": "攤號 26",
+    "sort_order": 110
+  },
+  {
+    "category": "富基魚市",
+    "name": "小萍、小珮活海鮮",
+    "location": "攤號 27、28",
+    "sort_order": 111
+  },
+  {
+    "category": "富基魚市",
+    "name": "妙玲活海鮮",
+    "location": "攤號 29、30、31",
+    "sort_order": 112
+  },
+  {
+    "category": "富基魚市",
+    "name": "蟹之鄉活海鮮",
+    "location": "攤號 33、34、35",
+    "sort_order": 113
+  },
+  {
+    "category": "富基魚市",
+    "name": "春金活海產",
+    "location": "攤號 36",
+    "sort_order": 114
+  },
+  {
+    "category": "富基魚市",
+    "name": "慧琪活海鮮",
+    "location": "攤號 37、38",
+    "sort_order": 115
+  },
+  {
+    "category": "富基魚市",
+    "name": "姊妹拌手禮",
+    "location": "攤號 39、40",
+    "sort_order": 116
+  },
+  {
+    "category": "富基魚市",
+    "name": "曲師傅活海鮮",
+    "location": "攤號 41、42",
+    "sort_order": 117
+  },
+  {
+    "category": "富基魚市",
+    "name": "第一家餐廳（張沛環）",
+    "location": "攤號 A",
+    "sort_order": 118
+  },
+  {
+    "category": "富基魚市",
+    "name": "姊妹餐廳（江玉琴）",
+    "location": "攤號 B、C、D",
+    "sort_order": 119
+  },
+  {
+    "category": "富基魚市",
+    "name": "味味餐廳（邱慧琪）",
+    "location": "攤號 E",
+    "sort_order": 120
+  },
+  {
+    "category": "富基魚市",
+    "name": "張專業生魚片（張文瑞）",
+    "location": "攤號 I",
+    "sort_order": 121
+  },
+  {
+    "category": "富基魚市",
+    "name": "石花凍、烤番薯（番薯明）",
+    "location": "攤號 假日市集",
+    "sort_order": 122
+  }
+]
