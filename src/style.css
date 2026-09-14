@@ -727,7 +727,7 @@ a {
 
 @media (max-width: 700px), (orientation: portrait) and (max-aspect-ratio: 3/4) {
   .campaign-page.registration-page {
-    background-image: url('/assets/home-mobile.jpg');
+    background-image: url('/assets/registration-mobile-bg.jpg');
   }
 }
 
