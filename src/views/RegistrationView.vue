@@ -27,7 +27,7 @@ async function submit() {
 </script>
 
 <template>
-  <main class="campaign-page">
+  <main class="campaign-page registration-page">
     <section class="campaign-card form-card">
       <template v-if="success">
         <div class="success-mark" aria-hidden="true">✓</div>

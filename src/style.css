@@ -721,6 +721,16 @@ a {
     linear-gradient(145deg, #ecfbf7 0%, #83d4dc 48%, #286395 100%);
 }
 
+.campaign-page.registration-page {
+  background: #173d6d url('/assets/home-desktop.jpg') center / cover no-repeat;
+}
+
+@media (max-width: 700px), (orientation: portrait) and (max-aspect-ratio: 3/4) {
+  .campaign-page.registration-page {
+    background-image: url('/assets/home-mobile.jpg');
+  }
+}
+
 .campaign-card {
   width: min(680px, 100%);
   padding: clamp(30px, 6vw, 58px);
