@@ -45,6 +45,15 @@ function closeMenu() {
   menu.value?.removeAttribute('open')
   mobileMenu.value?.removeAttribute('open')
 }
+
+function hotspotStyle(link) {
+  return {
+    left: `${link.left}%`,
+    top: `${link.top}%`,
+    width: `${link.width}%`,
+    height: `${link.height}%`,
+  }
+}
 </script>
 
 <template>
@@ -53,19 +62,41 @@ function closeMenu() {
       <h1 class="sr-only">{{ title }}</h1>
 
       <div v-if="scrolling" class="content-scroll">
-        <figure v-for="(slide, index) in slides" :key="slide.src" class="content-scroll__page">
+        <figure v-for="(slide, index) in slides" :key="slide.src" class="content-scroll__page content-image-stage">
           <img class="content-artwork" :src="slide.src" :alt="slide.alt" />
+          <a
+            v-for="link in slide.links"
+            :key="`${link.name}-${link.address}`"
+            class="content-map-hotspot"
+            :href="link.href"
+            target="_blank"
+            rel="noopener noreferrer"
+            :style="hotspotStyle(link)"
+            :aria-label="`${link.name} Google Maps（另開新視窗）`"
+            :title="`${link.name}｜開啟 Google Maps`"
+          />
           <figcaption class="sr-only">{{ title }}第 {{ index + 1 }} 頁</figcaption>
         </figure>
       </div>
 
       <Transition v-else name="content-slide" mode="out-in">
-        <img
+        <div
           :key="activeSlide.src"
-          class="content-artwork"
-          :src="activeSlide.src"
-          :alt="activeSlide.alt"
-        />
+          class="content-image-stage"
+        >
+          <img class="content-artwork" :src="activeSlide.src" :alt="activeSlide.alt" />
+          <a
+            v-for="link in activeSlide.links"
+            :key="`${link.name}-${link.address}`"
+            class="content-map-hotspot"
+            :href="link.href"
+            target="_blank"
+            rel="noopener noreferrer"
+            :style="hotspotStyle(link)"
+            :aria-label="`${link.name} Google Maps（另開新視窗）`"
+            :title="`${link.name}｜開啟 Google Maps`"
+          />
+        </div>
       </Transition>
 
       <details ref="menu" class="content-menu">
@@ -105,8 +136,19 @@ function closeMenu() {
       <h1 class="sr-only">{{ title }}</h1>
 
       <div v-if="mobileSlides.length > 1" class="content-mobile-scroll">
-        <figure v-for="(slide, index) in mobileSlides" :key="slide.src" class="content-mobile-scroll__page">
+        <figure v-for="(slide, index) in mobileSlides" :key="slide.src" class="content-mobile-scroll__page content-image-stage">
           <img class="content-mobile-artwork" :src="slide.src" :alt="slide.alt" />
+          <a
+            v-for="link in slide.links"
+            :key="`${link.name}-${link.address}`"
+            class="content-map-hotspot"
+            :href="link.href"
+            target="_blank"
+            rel="noopener noreferrer"
+            :style="hotspotStyle(link)"
+            :aria-label="`${link.name} Google Maps（另開新視窗）`"
+            :title="`${link.name}｜開啟 Google Maps`"
+          />
           <figcaption class="sr-only">{{ title }}手機版第 {{ index + 1 }} 頁</figcaption>
         </figure>
       </div>

@@ -5,18 +5,21 @@ import HomeView from './views/HomeView.vue'
 import ContentPageView from './views/ContentPageView.vue'
 import RegistrationView from './views/RegistrationView.vue'
 import AdminView from './views/AdminView.vue'
+import { passportDesktopSlides, passportMobileSlides } from './data/passport.js'
 import './style.css'
+
+const normalizeSlide = (title, slide, index, total, mobile = false) => typeof slide === 'string'
+  ? {
+      src: slide,
+      alt: `${title}${mobile ? '手機版' : ''}${total > 1 ? `第 ${index + 1} 頁` : ''}`,
+      links: [],
+    }
+  : slide
 
 const page = (title, slides, cta = null, scrolling = false, mobileSlides = []) => ({
   title,
-  slides: slides.map((src, index) => ({
-    src,
-    alt: `${title}${slides.length > 1 ? `第 ${index + 1} 頁` : ''}`,
-  })),
-  mobileSlides: mobileSlides.map((src, index) => ({
-    src,
-    alt: `${title}手機版${mobileSlides.length > 1 ? `第 ${index + 1} 頁` : ''}`,
-  })),
+  slides: slides.map((slide, index) => normalizeSlide(title, slide, index, slides.length)),
+  mobileSlides: mobileSlides.map((slide, index) => normalizeSlide(title, slide, index, mobileSlides.length, true)),
   cta,
   scrolling,
 })
@@ -44,10 +47,7 @@ const router = createRouter({
       path: '/protect',
       name: 'protect',
       component: ContentPageView,
-      props: page('海派護照', ['/assets/pages/protect-restaurants.jpg'], null, false, [
-        '/assets/pages/mobile/protect-1.jpg',
-        '/assets/pages/mobile/protect-2.jpg',
-      ]),
+      props: page('海派護照', passportDesktopSlides, null, false, passportMobileSlides),
     },
     {
       path: '/gift',
