@@ -141,7 +141,8 @@ Server 使用 `compose.server.yaml` 加上 Caddy 提供 HTTPS。Server 的 `.env
 docker compose -f compose.yaml -f compose.server.yaml --profile backup up --build -d
 ```
 
-測試網址為 <https://demo.ntocean-feast.com.tw>。DNS 的 A 記錄必須先指向 Server，
-Caddy 才能自動取得 TLS 憑證。
+正式網址為 <https://www.ntocean-feast.com.tw>，測試網址為
+<https://demo.ntocean-feast.com.tw>。兩個 DNS 的 A 記錄都必須指向 Server，
+Caddy 才能自動取得各自的 TLS 憑證。
 
 首頁會依畫面方向切換桌機版（1920×1080）與手機版（1080×1920）視覺。五個首頁入口已分別預留 `/event`、`/map`、`/protect`、`/gift`、`/food` 路由。
