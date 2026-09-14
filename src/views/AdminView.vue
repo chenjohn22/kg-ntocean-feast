@@ -12,7 +12,6 @@ const pagination = reactive({ page: 1, pageSize: 20, total: 0, totalPages: 0 })
 const filters = reactive({ q: '', name: '', phone: '', email: '', code: '', dateFrom: '', dateTo: '', status: '' })
 const dataError = ref('')
 const activePanel = ref('registrations')
-const selectedSuggestion = ref('')
 const satisfaction = reactive({ total: 0, average: 0, ratings: [] })
 
 const ratingLabels = ['非常不滿意', '不滿意', '普通', '滿意', '非常滿意']
@@ -139,10 +138,6 @@ function sourceLabel(source) {
   }[source] || '—'
 }
 
-function showSuggestion(suggestion) {
-  selectedSuggestion.value = suggestion
-}
-
 onMounted(checkSession)
 </script>
 
@@ -217,7 +212,7 @@ onMounted(checkSession)
                     <td>{{ row.registered ? sourceLabel(row.ticket_source) : '—' }}</td>
                     <td>{{ row.restaurant_name || '—' }}</td>
                     <td>{{ row.satisfaction ? `${row.satisfaction} 分` : '—' }}</td>
-                    <td><button v-if="row.suggestion" class="suggestion-button" type="button" @click="showSuggestion(row.suggestion)">查看建議</button><span v-else>—</span></td>
+                    <td class="suggestion-cell"><textarea v-if="row.suggestion" class="suggestion-preview" :value="row.suggestion" readonly aria-label="活動建議內容" /><span v-else>—</span></td>
                     <td>{{ formatDate(row.registered_at) }}</td>
                   </tr>
                   <tr v-if="!loading && !rows.length"><td colspan="10" class="empty-cell">查無符合條件的資料</td></tr>
@@ -253,13 +248,6 @@ onMounted(checkSession)
         </section>
       </div>
 
-      <div v-if="selectedSuggestion" class="modal-backdrop" role="presentation" @click.self="selectedSuggestion = ''">
-        <section class="suggestion-modal" role="dialog" aria-modal="true" aria-labelledby="suggestion-title">
-          <div class="modal-header"><h2 id="suggestion-title">活動建議內容</h2><button type="button" aria-label="關閉" @click="selectedSuggestion = ''">×</button></div>
-          <p>{{ selectedSuggestion }}</p>
-          <button class="admin-button admin-button--primary" type="button" @click="selectedSuggestion = ''">關閉</button>
-        </section>
-      </div>
     </template>
   </main>
 </template>
