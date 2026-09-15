@@ -180,12 +180,15 @@ a {
   display: grid;
   overflow: hidden;
   place-items: center;
-  background: #000;
+  background: rgba(0, 0, 0, .76);
 }
 
 .intro-video__frame {
-  width: min(100vw, 177.778vh);
-  height: min(100vh, 56.25vw);
+  width: min(88vw, 156.444vh);
+  height: min(88vh, 49.5vw);
+  overflow: hidden;
+  border-radius: clamp(10px, 1.2vw, 20px);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, .55);
 }
 
 .intro-video__frame iframe {
@@ -570,8 +573,8 @@ a {
   }
 
   .intro-video__frame {
-    width: min(100vw, 56.25vh);
-    height: min(100vh, 177.778vw);
+    width: min(88vw, 49.5vh);
+    height: min(88vh, 156.444vw);
   }
 
   .intro-video__close {
