@@ -9,7 +9,7 @@ const navigation = [
   { key: 'food', label: '海派美食', image: '/assets/nav-food.png', to: '/food' },
 ]
 
-const desktopVideoId = 'siHjTgOEVK8'
+const desktopVideoId = 'yDoNhantIcM'
 const mobileVideoId = 'qPuN5CSND80'
 const showIntro = ref(true)
 const canCloseIntro = ref(false)

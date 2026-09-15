@@ -105,7 +105,7 @@ onMounted(loadRestaurants)
           </label>
 
           <fieldset class="survey-fieldset">
-            <legend>1. 獲得抽獎券的來源</legend>
+            <legend>獲得抽獎券的來源</legend>
             <div class="radio-options radio-options--source">
               <label class="radio-card"><input v-model="form.ticketSource" type="radio" name="ticket-source" value="fuji_banquet" required /><span>富基海派宴</span></label>
               <label class="radio-card"><input v-model="form.ticketSource" type="radio" name="ticket-source" value="guihou_fair" /><span>龜吼園遊會</span></label>
@@ -114,7 +114,7 @@ onMounted(loadRestaurants)
           </fieldset>
 
           <label v-if="form.ticketSource === 'partner_restaurant'" class="conditional-field">
-            <span>1-2. 活動合作餐廳</span>
+            <span>活動合作餐廳</span>
             <select v-model="form.restaurantId" name="restaurant" required :disabled="restaurantsLoading || !!restaurantsError">
               <option value="" disabled>{{ restaurantsLoading ? '餐廳載入中…' : '請選擇餐廳' }}</option>
               <optgroup v-for="group in restaurantGroups" :key="group.category" :label="group.category">
@@ -127,7 +127,7 @@ onMounted(loadRestaurants)
           </label>
 
           <fieldset class="survey-fieldset">
-            <legend>2. 對於活動整體滿意度</legend>
+            <legend>對於活動整體滿意度</legend>
             <div class="radio-options radio-options--rating">
               <label v-for="(label, rating) in ['非常不滿意', '不滿意', '普通', '滿意', '非常滿意']" :key="rating" class="radio-card radio-card--rating">
                 <input v-model="form.satisfaction" type="radio" name="satisfaction" :value="rating + 1" :required="rating === 0" />
@@ -137,7 +137,7 @@ onMounted(loadRestaurants)
           </fieldset>
 
           <label>
-            <span>3. 對於新北海派活動留下您的寶貴建議</span>
+            <span>對於新北海派活動留下您的寶貴建議</span>
             <textarea v-model.trim="form.suggestion" name="suggestion" rows="5" maxlength="1000" required placeholder="請輸入您的建議（最多 1000 字）" />
             <small class="character-count">{{ form.suggestion.length }} / 1000</small>
           </label>
