@@ -475,6 +475,12 @@ a {
   transform: translateX(-50%) translateY(5px) scale(.98);
 }
 
+.content-cta--event-registration {
+  left: 44.2%;
+  bottom: -1%;
+  width: 21%;
+}
+
 .content-slide-enter-active,
 .content-slide-leave-active {
   transition: opacity 220ms ease, transform 220ms ease;
@@ -723,6 +729,12 @@ a {
   .content-cta--mobile {
     width: 40%;
     bottom: -.5%;
+  }
+
+  .content-cta--mobile.content-cta--event-registration {
+    left: 28%;
+    bottom: 8.5%;
+    width: 44%;
   }
 }
 

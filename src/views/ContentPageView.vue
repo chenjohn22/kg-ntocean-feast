@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 const props = defineProps({
   title: { type: String, required: true },
@@ -21,10 +21,25 @@ const sectionLinks = [
 const current = ref(0)
 const menu = ref(null)
 const mobileMenu = ref(null)
+const now = ref(Date.now())
 const activeSlide = computed(() => props.slides[current.value])
+const showCta = computed(() => (
+  props.cta && (!props.cta.expiresAt || now.value < Date.parse(props.cta.expiresAt))
+))
+let clockTimer
 
 watch(() => props.title, () => {
   current.value = 0
+})
+
+onMounted(() => {
+  clockTimer = window.setInterval(() => {
+    now.value = Date.now()
+  }, 1000)
+})
+
+onBeforeUnmount(() => {
+  window.clearInterval(clockTimer)
 })
 
 function previous() {
@@ -108,7 +123,22 @@ function hotspotStyle(link) {
         </nav>
       </details>
 
-      <RouterLink v-if="cta" class="content-cta" :to="cta.to" :aria-label="cta.label">
+      <a
+        v-if="showCta && cta.external"
+        :class="['content-cta', cta.variant && `content-cta--${cta.variant}`]"
+        :href="cta.to"
+        :aria-label="cta.label"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img :src="cta.image" :alt="cta.label" />
+      </a>
+      <RouterLink
+        v-else-if="showCta"
+        :class="['content-cta', cta.variant && `content-cta--${cta.variant}`]"
+        :to="cta.to"
+        :aria-label="cta.label"
+      >
         <img :src="cta.image" :alt="cta.label" />
       </RouterLink>
 
@@ -169,7 +199,22 @@ function hotspotStyle(link) {
         </nav>
       </details>
 
-      <RouterLink v-if="cta" class="content-cta content-cta--mobile" :to="cta.to" :aria-label="cta.label">
+      <a
+        v-if="showCta && cta.external"
+        :class="['content-cta', 'content-cta--mobile', cta.variant && `content-cta--${cta.variant}`]"
+        :href="cta.to"
+        :aria-label="cta.label"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img :src="cta.mobileImage || cta.image" :alt="cta.label" />
+      </a>
+      <RouterLink
+        v-else-if="showCta"
+        :class="['content-cta', 'content-cta--mobile', cta.variant && `content-cta--${cta.variant}`]"
+        :to="cta.to"
+        :aria-label="cta.label"
+      >
         <img :src="cta.mobileImage || cta.image" :alt="cta.label" />
       </RouterLink>
     </section>

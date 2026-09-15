@@ -32,7 +32,14 @@ const router = createRouter({
       path: '/event',
       name: 'event',
       component: ContentPageView,
-      props: page('活動專區', ['/assets/pages/event.jpg'], null, false, ['/assets/pages/mobile/event.jpg']),
+      props: page('活動專區', ['/assets/pages/event.jpg'], {
+        to: 'https://docs.google.com/forms/d/e/1FAIpQLSerScgu3rDOkHNwR41tY1178JSJf5UmONwD3velXlBZWxPYng/viewform?usp=send_form',
+        label: '報名認桌',
+        image: '/assets/pages/event-register.png',
+        external: true,
+        variant: 'event-registration',
+        expiresAt: '2026-10-01T12:00:00+08:00',
+      }, false, ['/assets/pages/mobile/event.jpg']),
     },
     {
       path: '/map',
