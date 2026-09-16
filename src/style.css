@@ -485,8 +485,8 @@ a {
 }
 
 .content-cta--map-details {
-  bottom: 1.2%;
-  width: min(25%, 480px);
+  bottom: .5%;
+  width: min(20%, 380px);
 }
 
 .content-slide-enter-active,
@@ -746,8 +746,8 @@ a {
   }
 
   .content-cta--mobile.content-cta--map-details {
-    bottom: .8%;
-    width: 48%;
+    bottom: .3%;
+    width: 36%;
   }
 }
 
