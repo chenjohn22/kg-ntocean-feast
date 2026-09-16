@@ -38,7 +38,7 @@ const router = createRouter({
         image: '/assets/pages/event-register.png',
         external: true,
         variant: 'event-registration',
-        expiresAt: '2026-10-01T12:00:00+08:00',
+        expiresAt: '2026-09-29T12:00:00+08:00',
       }, false, ['/assets/pages/mobile/event-20260916.jpg']),
     },
     {
