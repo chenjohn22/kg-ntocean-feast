@@ -484,6 +484,11 @@ a {
   width: 21%;
 }
 
+.content-cta--map-details {
+  bottom: 1.2%;
+  width: min(25%, 480px);
+}
+
 .content-slide-enter-active,
 .content-slide-leave-active {
   transition: opacity 220ms ease, transform 220ms ease;
@@ -738,6 +743,11 @@ a {
     left: 28%;
     bottom: 8.5%;
     width: 44%;
+  }
+
+  .content-cta--mobile.content-cta--map-details {
+    bottom: .8%;
+    width: 48%;
   }
 }
 

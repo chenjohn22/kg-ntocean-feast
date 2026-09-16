@@ -1,5 +1,4 @@
-# Production domain www.ntocean-feast.com.tw is temporarily disabled.
-demo.ntocean-feast.com.tw {
+demo.ntocean-feast.com.tw, www.ntocean-feast.com.tw {
 	encode zstd gzip
 
 	header {
