@@ -19,7 +19,7 @@ let mobileQuery
 
 function setVideoSource() {
   const videoId = mobileQuery?.matches ? mobileVideoId : desktopVideoId
-  introVideoSrc.value = `https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0&modestbranding=1`
+  introVideoSrc.value = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1`
 }
 
 function closeIntro() {
