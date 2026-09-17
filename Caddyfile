@@ -1,4 +1,4 @@
-demo.ntocean-feast.com.tw, www.ntocean-feast.com.tw {
+www.ntocean-feast.com.tw {
 	encode zstd gzip
 
 	header {
