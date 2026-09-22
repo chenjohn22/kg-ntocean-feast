@@ -9,6 +9,21 @@ const navigation = [
   { key: 'food', label: '海派美食', image: '/assets/nav-food.png', to: '/food' },
 ]
 
+const featuredLinks = [
+  {
+    key: 'crab-news',
+    label: '螃蟹快報',
+    image: '/assets/nav-crab-news.png',
+    href: 'https://www.facebook.com/share/1ERmgwB6Qi/?mibextid=wwXIfr',
+  },
+  {
+    key: 'wanli-crab',
+    label: '萬里蟹官網',
+    image: '/assets/nav-wanli-crab.png',
+    href: 'https://wanlicrab.tw',
+  },
+]
+
 const desktopVideoId = 'yDoNhantIcM'
 const mobileVideoId = 'qPuN5CSND80'
 const showIntro = ref(true)
@@ -116,6 +131,17 @@ onBeforeUnmount(() => {
       >
         <img :src="item.image" :alt="item.label" draggable="false" />
       </RouterLink>
+      <a
+        v-for="item in featuredLinks"
+        :key="item.key"
+        :class="['featured-link', `featured-link--${item.key}`]"
+        :href="item.href"
+        :aria-label="`${item.label}（另開新視窗）`"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img :src="item.image" :alt="item.label" draggable="false" />
+      </a>
     </nav>
 
     <nav class="mobile-navigation" aria-label="網站主要選單">
@@ -128,6 +154,17 @@ onBeforeUnmount(() => {
       >
         <span class="sr-only">{{ item.label }}</span>
       </RouterLink>
+      <a
+        v-for="item in featuredLinks"
+        :key="item.key"
+        :class="['mobile-featured-link', `mobile-featured-link--${item.key}`]"
+        :href="item.href"
+        :aria-label="`${item.label}（另開新視窗）`"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img :src="item.image" :alt="item.label" draggable="false" />
+      </a>
     </nav>
 
     <div v-if="showIntro" class="intro-video" role="dialog" aria-modal="true" aria-label="活動開場影片">
