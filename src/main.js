@@ -32,14 +32,22 @@ const router = createRouter({
       path: '/event',
       name: 'event',
       component: ContentPageView,
-      props: page('活動專區', ['/assets/pages/event-20260916.jpg'], {
+      props: page('活動專區', [
+        '/assets/pages/event-20260916.jpg',
+        '/assets/pages/event-winners-main.jpg',
+        '/assets/pages/event-winners-waitlist.jpg',
+      ], {
         to: 'https://docs.google.com/forms/d/e/1FAIpQLSerScgu3rDOkHNwR41tY1178JSJf5UmONwD3velXlBZWxPYng/viewform?usp=send_form',
         label: '報名認桌',
         image: '/assets/pages/event-register.png',
         external: true,
         variant: 'event-registration',
         expiresAt: '2026-09-29T12:00:00+08:00',
-      }, false, ['/assets/pages/mobile/event-20260916.jpg']),
+      }, true, [
+        '/assets/pages/mobile/event-20260916.jpg',
+        '/assets/pages/mobile/event-winners-main.jpg',
+        '/assets/pages/mobile/event-winners-waitlist.jpg',
+      ]),
     },
     {
       path: '/map',
