@@ -1,7 +1,7 @@
 const mapsUrl = (name, address) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${name} ${address}`)}`
 
-const store = (name, address) => ({ name, address, href: mapsUrl(name, address) })
+const store = (name, address, options = {}) => ({ name, address, href: mapsUrl(name, address), ...options })
 
 const yeliu = [
   store('魚村活海鮮', '新北市萬里區野柳里港東路74之6號'),
@@ -20,6 +20,9 @@ const wanli = [
 const fuji = [
   store('阿達活海產餐廳', '新北市石門區富基里楓林17-10號'),
   store('姊妹海景餐廳', '新北市石門區富基村楓林15-16號'),
+  store('第一家海景餐廳', '新北市石門區富基村楓林15-16號'),
+  store('味味餐廳', '新北市石門區富基村楓林15-16號'),
+  store('張師傅生魚片', '新北市石門區富基村楓林15-16號'),
   store('春金活海產', '新北市石門區富基里楓林路17-8號'),
 ]
 
@@ -70,21 +73,21 @@ const featuredRestaurants = [
 ]
 
 const rows = (stores, { left, top, width, step, height = 3.1 }) =>
-  stores.map((item, index) => ({ ...item, left, top: top + (step * index), width, height }))
+  stores.map((item, index) => ({ ...item, left, top: top + (step * index) + (item.topOffset || 0), width, height }))
 
 export const passportDesktopSlides = [
   {
-    src: '/assets/pages/passport-20260930-1.jpg',
+    src: '/assets/pages/passport-20261007-1.jpg',
     alt: '海派護照合作亮點餐廳第 1 頁',
     links: [
       ...rows(yeliu, { left: 7.2, top: 29.0, width: 15.2, step: 3.62 }),
-      ...rows(wanli, { left: 7.2, top: 63.0, width: 16.5, step: 3.62 }),
-      ...rows(fuji, { left: 7.2, top: 84.0, width: 15.6, step: 3.62 }),
+      ...rows(wanli, { left: 7.2, top: 58.5, width: 16.5, step: 3.62, height: 2.8 }),
+      ...rows(fuji, { left: 7.2, top: 76.3, width: 15.6, step: 3.7, height: 2.8 }),
       ...rows(guihou, { left: 53.5, top: 29.0, width: 16.0, step: 3.62 }),
     ],
   },
   {
-    src: '/assets/pages/passport-20260930-2.jpg',
+    src: '/assets/pages/passport-20261007-2.jpg',
     alt: '海派護照合作亮點餐廳第 2 頁',
     links: [
       ...rows(aodiFulong, { left: 8.3, top: 29.0, width: 14.8, step: 3.72 }),
@@ -100,18 +103,18 @@ export const passportDesktopSlides = [
 
 export const passportMobileSlides = [
   {
-    src: '/assets/pages/mobile/passport-20260930-1.jpg',
+    src: '/assets/pages/mobile/passport-20261007-1.jpg',
     alt: '海派護照合作亮點餐廳手機版第 1 頁',
     links: [
       ...rows(yeliu, { left: 12.4, top: 12.3, width: 24.0, step: 2.05, height: 1.85 }),
       ...rows(wanli, { left: 12.4, top: 31.0, width: 27.0, step: 2.05, height: 1.85 }),
       ...rows(guihou, { left: 12.4, top: 41.3, width: 27.0, step: 2.04, height: 1.85 }),
-      ...rows(fuji, { left: 12.4, top: 74.4, width: 25.0, step: 2.05, height: 1.85 }),
+      ...rows(fuji, { left: 12.4, top: 79.05, width: 25.0, step: 2.05, height: 1.85 }),
       ...rows(aodiFulong, { left: 12.4, top: 85.1, width: 24.0, step: 2.05, height: 1.85 }),
     ],
   },
   {
-    src: '/assets/pages/mobile/passport-20260930-2.jpg',
+    src: '/assets/pages/mobile/passport-20261007-2.jpg',
     alt: '海派護照合作亮點餐廳手機版第 2 頁',
     links: [
       ...rows(shenao, { left: 12.4, top: 12.2, width: 27.0, step: 2.1, height: 1.9 }),
