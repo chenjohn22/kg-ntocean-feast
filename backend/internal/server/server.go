@@ -45,6 +45,8 @@ type filters struct {
 	DateFrom string
 	DateTo   string
 	Status   string
+	Sort     string
+	Order    string
 	Page     int
 	PageSize int
 }
@@ -331,7 +333,7 @@ func (s *Server) listCodes(w http.ResponseWriter, r *http.Request) {
 		FROM lottery_codes c
 		LEFT JOIN registrations r ON r.lottery_code_id = c.id
 		LEFT JOIN activity_restaurants ar ON ar.id = r.activity_restaurant_id` + where +
-		` ORDER BY c.id ASC LIMIT ? OFFSET ?`
+		orderBy(f) + ` LIMIT ? OFFSET ?`
 	queryArgs := append(append([]any{}, args...), f.PageSize, (f.Page-1)*f.PageSize)
 	rows, err := s.db.QueryContext(r.Context(), query, queryArgs...)
 	if err != nil {
@@ -363,7 +365,7 @@ func (s *Server) exportCSV(w http.ResponseWriter, r *http.Request) {
 		ar.name, r.satisfaction, r.suggestion, r.registered_at
 		FROM lottery_codes c
 		LEFT JOIN registrations r ON r.lottery_code_id = c.id
-		LEFT JOIN activity_restaurants ar ON ar.id = r.activity_restaurant_id` + where + ` ORDER BY c.id ASC`
+		LEFT JOIN activity_restaurants ar ON ar.id = r.activity_restaurant_id` + where + orderBy(f)
 	rows, err := s.db.QueryContext(r.Context(), query, args...)
 	if err != nil {
 		writeError(w, http.StatusInternalServerError, "無法匯出報表")
@@ -427,6 +429,7 @@ func parseFilters(r *http.Request) (filters, error) {
 		Phone: strings.TrimSpace(q.Get("phone")), Email: strings.TrimSpace(q.Get("email")),
 		Code: strings.TrimSpace(q.Get("code")), DateFrom: strings.TrimSpace(q.Get("date_from")),
 		DateTo: strings.TrimSpace(q.Get("date_to")), Status: strings.TrimSpace(q.Get("status")),
+		Sort: strings.TrimSpace(q.Get("sort")), Order: strings.TrimSpace(q.Get("order")),
 		Page: 1, PageSize: 20,
 	}
 	if value, err := strconv.Atoi(q.Get("page")); err == nil && value > 0 {
@@ -445,7 +448,22 @@ func parseFilters(r *http.Request) (filters, error) {
 	if f.Status != "" && f.Status != "registered" && f.Status != "available" {
 		return f, errors.New("登記狀態不正確")
 	}
+	if f.Sort != "" && f.Sort != "satisfaction" {
+		return f, errors.New("排序欄位不正確")
+	}
+	if f.Sort == "" {
+		f.Order = ""
+	} else if f.Order != "asc" && f.Order != "desc" {
+		return f, errors.New("排序方向不正確")
+	}
 	return f, nil
+}
+
+func orderBy(f filters) string {
+	if f.Sort == "satisfaction" {
+		return " ORDER BY r.satisfaction IS NULL ASC, r.satisfaction " + strings.ToUpper(f.Order) + ", c.id ASC"
+	}
+	return " ORDER BY c.id ASC"
 }
 
 func buildWhere(f filters) (string, []any) {

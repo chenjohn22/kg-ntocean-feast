@@ -1135,6 +1135,11 @@ a {
 table { width: 100%; min-width: 940px; border-collapse: collapse; }
 .registration-table { min-width: 1540px; }
 th { padding: 11px 13px; color: #536d7a; font-size: .83rem; text-align: left; white-space: nowrap; border-bottom: 2px solid #dbe5e9; background: #f6f9fa; }
+.table-sort-button { display: inline-flex; margin: -7px -9px; padding: 7px 9px; align-items: center; gap: 6px; color: inherit; font: inherit; font-weight: 800; border: 0; border-radius: 7px; background: transparent; cursor: pointer; }
+.table-sort-button:hover { color: #176f6b; background: #e7f4f1; }
+.table-sort-button:focus-visible { color: #176f6b; outline: 2px solid #5baea7; outline-offset: 1px; }
+.sort-indicator { width: 1em; color: #168276; font-size: 1rem; line-height: 1; text-align: center; }
+.sr-only { width: 1px; height: 1px; padding: 0; position: absolute; overflow: hidden; white-space: nowrap; clip: rect(0, 0, 0, 0); border: 0; }
 td { padding: 13px; font-size: .9rem; border-bottom: 1px solid #e6edef; }
 tbody tr:hover { background: #f8fbfc; }
 .code-cell { color: #183f5c; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 800; letter-spacing: .025em; }

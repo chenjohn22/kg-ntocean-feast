@@ -10,6 +10,7 @@ const rows = ref([])
 const summary = reactive({ total: 0, registered: 0, available: 0 })
 const pagination = reactive({ page: 1, pageSize: 20, total: 0, totalPages: 0 })
 const filters = reactive({ q: '', name: '', phone: '', email: '', code: '', dateFrom: '', dateTo: '', status: '' })
+const sorting = reactive({ sort: '', order: '' })
 const dataError = ref('')
 const activePanel = ref('registrations')
 const satisfaction = reactive({ total: 0, average: 0, ratings: [] })
@@ -25,6 +26,10 @@ function queryString(includePaging = true) {
   Object.entries(mapping).forEach(([key, param]) => {
     if (filters[key]) params.set(param, filters[key])
   })
+  if (sorting.sort) {
+    params.set('sort', sorting.sort)
+    params.set('order', sorting.order)
+  }
   if (includePaging) {
     params.set('page', pagination.page)
     params.set('page_size', pagination.pageSize)
@@ -114,6 +119,30 @@ function resetFilters() {
   loadDashboard()
 }
 
+function sortBySatisfaction() {
+  if (sorting.sort !== 'satisfaction') {
+    sorting.sort = 'satisfaction'
+    sorting.order = 'desc'
+  } else if (sorting.order === 'desc') {
+    sorting.order = 'asc'
+  } else {
+    sorting.sort = ''
+    sorting.order = ''
+  }
+  pagination.page = 1
+  loadDashboard()
+}
+
+const satisfactionSortLabel = computed(() => {
+  if (sorting.sort !== 'satisfaction') return '滿意度排序：未排序'
+  return `滿意度排序：${sorting.order === 'desc' ? '由高到低' : '由低到高'}`
+})
+
+const satisfactionAriaSort = computed(() => {
+  if (sorting.sort !== 'satisfaction') return 'none'
+  return sorting.order === 'desc' ? 'descending' : 'ascending'
+})
+
 function changePage(page) {
   if (page < 1 || page > pagination.totalPages || page === pagination.page) return
   pagination.page = page
@@ -201,7 +230,7 @@ onMounted(checkSession)
             <p v-if="dataError" class="form-error">{{ dataError }}</p>
             <div class="table-scroll" :class="{ 'is-loading': loading }">
               <table class="registration-table">
-                <thead><tr><th>登錄編號</th><th>狀態</th><th>姓名</th><th>聯絡電話</th><th>信箱</th><th>抽獎券來源</th><th>活動合作餐廳</th><th>滿意度</th><th>活動建議</th><th>登記日期</th></tr></thead>
+                <thead><tr><th>登錄編號</th><th>狀態</th><th>姓名</th><th>聯絡電話</th><th>信箱</th><th>抽獎券來源</th><th>活動合作餐廳</th><th :aria-sort="satisfactionAriaSort"><button class="table-sort-button" type="button" :title="satisfactionSortLabel" @click="sortBySatisfaction"><span>滿意度</span><span class="sort-indicator" aria-hidden="true">{{ sorting.sort !== 'satisfaction' ? '⇅' : sorting.order === 'desc' ? '↓' : '↑' }}</span><span class="sr-only">{{ satisfactionSortLabel }}</span></button></th><th>活動建議</th><th>登記日期</th></tr></thead>
                 <tbody>
                   <tr v-for="row in rows" :key="row.id">
                     <td class="code-cell">{{ row.code }}</td>

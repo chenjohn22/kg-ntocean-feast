@@ -1,6 +1,7 @@
 package server
 
 import (
+	"net/http/httptest"
 	"strings"
 	"testing"
 	"time"
@@ -41,6 +42,28 @@ func TestBuildWhere(t *testing.T) {
 	}
 	if len(args) != 5 {
 		t.Errorf("len(args) = %d, want 5", len(args))
+	}
+}
+
+func TestParseFiltersSatisfactionSort(t *testing.T) {
+	request := httptest.NewRequest("GET", "/api/admin/codes?sort=satisfaction&order=desc", nil)
+	filters, err := parseFilters(request)
+	if err != nil {
+		t.Fatalf("parseFilters() error = %v", err)
+	}
+	if filters.Sort != "satisfaction" || filters.Order != "desc" {
+		t.Fatalf("parseFilters() sort = %q, order = %q", filters.Sort, filters.Order)
+	}
+	want := " ORDER BY r.satisfaction IS NULL ASC, r.satisfaction DESC, c.id ASC"
+	if got := orderBy(filters); got != want {
+		t.Fatalf("orderBy() = %q, want %q", got, want)
+	}
+}
+
+func TestParseFiltersRejectsInvalidSort(t *testing.T) {
+	request := httptest.NewRequest("GET", "/api/admin/codes?sort=name&order=desc", nil)
+	if _, err := parseFilters(request); err == nil {
+		t.Fatal("parseFilters() accepted an unsupported sort field")
 	}
 }
 
