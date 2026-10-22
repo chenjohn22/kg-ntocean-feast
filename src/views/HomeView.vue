@@ -211,7 +211,7 @@ onBeforeUnmount(() => {
       <div class="home-announcement__panel">
         <picture>
           <source media="(max-width: 700px), (orientation: portrait) and (max-aspect-ratio: 3/4)" srcset="/assets/home-announcement-mobile.jpg" />
-          <img src="/assets/home-announcement-desktop.jpg" alt="活動延期公告" />
+          <img src="/assets/home-announcement-desktop.jpg" alt="活動延期公告" fetchpriority="high" decoding="sync" />
         </picture>
         <button
           class="home-announcement__close"
