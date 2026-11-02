@@ -3,7 +3,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
 import HomeView from './views/HomeView.vue'
 import ContentPageView from './views/ContentPageView.vue'
-import RegistrationView from './views/RegistrationView.vue'
 import AdminView from './views/AdminView.vue'
 import { passportDesktopSlides, passportMobileSlides } from './data/passport.js'
 import './style.css'
@@ -70,12 +69,7 @@ const router = createRouter({
       path: '/gift',
       name: 'gift',
       component: ContentPageView,
-      props: page('海派好禮', ['/assets/pages/gift.jpg'], {
-        to: '/gift/register',
-        label: '我要登錄',
-        image: '/assets/pages/gift-register.png',
-        mobileImage: '/assets/pages/mobile/gift-register.png',
-      }, false, ['/assets/pages/mobile/gift.jpg']),
+      props: page('海派好禮', ['/assets/pages/gift.jpg'], null, false, ['/assets/pages/mobile/gift.jpg']),
     },
     {
       path: '/food',
@@ -89,7 +83,7 @@ const router = createRouter({
         Array.from({ length: 7 }, (_, index) => `/assets/pages/mobile/food-${index + 1}.jpg`),
       ),
     },
-    { path: '/gift/register', name: 'gift-register', component: RegistrationView },
+    // { path: '/gift/register', name: 'gift-register', component: RegistrationView },
     { path: '/kg-manager-admin', name: 'admin', component: AdminView },
     { path: '/:pathMatch(.*)*', redirect: '/' },
   ],
