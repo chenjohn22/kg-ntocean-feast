@@ -27,7 +27,6 @@ const featuredLinks = [
 const desktopVideoId = 'yDoNhantIcM'
 const mobileVideoId = 'qPuN5CSND80'
 const showIntro = ref(true)
-const showAnnouncement = ref(true)
 const canCloseIntro = ref(false)
 const introVideoSrc = ref('')
 const introVideoFrame = ref(null)
@@ -72,10 +71,6 @@ function closeIntro() {
   dismissIntro()
 }
 
-function closeAnnouncement() {
-  showAnnouncement.value = false
-}
-
 function handlePlayerStateChange(event) {
   if (event.data === window.YT?.PlayerState.ENDED) dismissIntro()
 }
@@ -95,12 +90,7 @@ async function setupIntroPlayer() {
 }
 
 function handleKeydown(event) {
-  if (event.key !== 'Escape') return
-  if (showAnnouncement.value) {
-    closeAnnouncement()
-    return
-  }
-  closeIntro()
+  if (event.key === 'Escape') closeIntro()
 }
 
 onMounted(() => {
@@ -201,27 +191,5 @@ onBeforeUnmount(() => {
       </Transition>
     </div>
 
-    <div
-      v-if="showAnnouncement"
-      class="home-announcement"
-      role="dialog"
-      aria-modal="true"
-      aria-label="活動延期公告"
-    >
-      <div class="home-announcement__panel">
-        <picture>
-          <source media="(max-width: 700px), (orientation: portrait) and (max-aspect-ratio: 3/4)" srcset="/assets/home-announcement-mobile.jpg" />
-          <img src="/assets/home-announcement-desktop.jpg" alt="活動延期公告" fetchpriority="high" decoding="sync" />
-        </picture>
-        <button
-          class="home-announcement__close"
-          type="button"
-          aria-label="關閉公告"
-          @click="closeAnnouncement"
-        >
-          <span aria-hidden="true"></span>
-        </button>
-      </div>
-    </div>
   </main>
 </template>
