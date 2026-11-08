@@ -69,7 +69,17 @@ const router = createRouter({
       path: '/gift',
       name: 'gift',
       component: ContentPageView,
-      props: page('海派好禮', ['/assets/pages/gift.jpg'], null, false, ['/assets/pages/mobile/gift.jpg']),
+      props: page('海派好禮', [
+        '/assets/pages/gift.jpg',
+        '/assets/pages/gift-winners-1.jpg',
+        '/assets/pages/gift-winners-2.jpg',
+        '/assets/pages/gift-winners-3.jpg',
+      ], null, true, [
+        '/assets/pages/mobile/gift.jpg',
+        '/assets/pages/mobile/gift-winners-1.jpg',
+        '/assets/pages/mobile/gift-winners-2.jpg',
+        '/assets/pages/mobile/gift-winners-3.jpg',
+      ]),
     },
     {
       path: '/food',
